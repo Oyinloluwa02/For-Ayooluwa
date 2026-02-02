@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aanuoluwapo ❤️</title>
+    
+    <link rel="icon" href="https://img.icons8.com/emoji/48/heart-suit.png" type="image/png">
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --pink: #ff4d6d;
+            --light-pink: #ffccd5;
+            --dark-pink: #c9184a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--light-pink);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 90%;
+            width: 450px;
+            z-index: 10;
+        }
+
+        .img-display {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            color: var(--dark-pink);
+            font-size: 1.6rem;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 120px; 
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+            white-space: nowrap;
+        }
+
+        #yes-btn {
+            background-color: var(--pink);
+            color: white;
+        }
+
+        #no-btn {
+            background-color: #f0f0f0;
+            color: #666;
+            position: relative;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--dark-pink);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="main-content">
+            <img class="img-display" src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyNXFsODN5MTFxd3Rxb3J5em0xcmZ5anE1Nm1lbGNscDdqeHFkZmRmbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1yldhWVdW9GtMQU0xa/giphy.gif" alt="Cute Valentine GIF">
+            
+            <h1>Aanuoluwapo, will you be my Valentine?</h1>
+            
+            <div class="btn-container">
+                <button id="yes-btn">Yes</button>
+                <button id="no-btn">No</button>
+            </div>
+            
+            <footer>With love, Oyinloluwa</footer>
+        </div>
+
+        <div id="success-content" class="hidden">
+            <img class="img-display" src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyc3dwYzFmYWFpc3h2bTM1ZmNwZzNmMzduN3VwdGVnbGN0MTRzNnpsYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XoG0jNh5h6dGC1a1g8/giphy.gif" alt="Success Celebration GIF">
+            
+            <h1 style="color: var(--pink);">YAY! See you on the 21st and lunch is on me on the 14th! 🌹</h1>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const mainContent = document.getElementById('main-content');
+        const successContent = document.getElementById('success-content');
+
+        let yesSize = 1.1; 
+
+        function moveButton() {
+            // Generates random position while keeping it somewhat on screen
+            const padding = 50;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${Math.max(padding, x)}px`;
+            noBtn.style.top = `${Math.max(padding, y)}px`;
+
+            // Make the Yes button grow more intimidatingly
+            yesSize += 0.5;
+            yesBtn.style.fontSize = `${yesSize}rem`;
+            yesBtn.style.padding = `${12 * (yesSize/1.1)}px ${28 * (yesSize/1.1)}px`;
+        }
+
+        // Add event listeners for the "No" button
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // Add event listener for the "Yes" button
+        yesBtn.addEventListener('click', () => {
+            mainContent.classList.add('hidden');
+            successContent.classList.remove('hidden');
+
+            // --- Confetti Explosion Effect ---
+            var duration = 5 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0, colors: ['#ff4d6d', '#ffccd5', '#c9184a'] };
+
+            function randomInRange(min, max) {
+              return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+              var timeLeft = animationEnd - Date.now();
+
+              if (timeLeft <= 0) {
+                return clearInterval(interval);
+              }
+
+              var particleCount = 50 * (timeLeft / duration);
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        });
+    </script>
+</body>
+</html>
